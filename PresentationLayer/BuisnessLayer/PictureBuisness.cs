@@ -29,5 +29,24 @@ namespace BuisnessLayer
             }
             return false;
         }
+        public bool UpdatePicture(Picture p)
+        {
+            if (this.pictureRepository.UpdatePicture(p) > 0)
+            {
+                return true;
+            }
+            return false;
+        }
+        public bool DeletePicture(Picture p)
+        {
+            if (this.pictureRepository.DeletePicture(p) > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }
