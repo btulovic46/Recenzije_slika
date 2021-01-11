@@ -1093,7 +1093,7 @@ button,
 select,
 textarea {
   font-family: inherit;
-  font-size: inherit;
+  font-size: xx-large;
   line-height: inherit;
 }
 a {
@@ -1288,6 +1288,7 @@ h6,
 }
 p {
   margin: 0 0 10px;
+    font-size: medium;
 }
 .lead {
   margin-bottom: 20px;
