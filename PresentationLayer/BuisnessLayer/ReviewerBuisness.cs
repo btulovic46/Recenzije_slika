@@ -29,5 +29,24 @@ namespace BuisnessLayer
             }
             return false;
         }
+        public bool UpdateReviewer(Reviewer r)
+        {
+            if (this.reviewerRepository.UpdateReviewer(r) > 0)
+            {
+                return true;
+            }
+            return false;
+        }
+        public bool DeleteReviewer(Reviewer r)
+        {
+            if (this.reviewerRepository.DeleteReviewer(r) > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }
