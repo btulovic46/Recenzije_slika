@@ -15,6 +15,6 @@ namespace DataLayer.Models
         public string Password { get; set; }
         public string Adress { get; set; }
         public string City { get; set; }
-        public decimal PhoneNumber { get; set; }
+        public string PhoneNumber { get; set; }
     }
 }

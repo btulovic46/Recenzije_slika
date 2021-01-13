@@ -29,10 +29,9 @@ namespace DataLayer
                     Review r = new Review();
                     r.Id = sqlDataReader.GetInt32(0);
                     r.Comment = sqlDataReader.GetString(1);
-                    r.Grade = sqlDataReader.GetDouble(2);
+                    r.Grade = sqlDataReader.GetDecimal(2);
                     r.ReviewerId = sqlDataReader.GetInt32(3);
                     r.PictureId = sqlDataReader.GetInt32(4);
-
 
                     results.Add(r);
                 }
@@ -45,7 +44,9 @@ namespace DataLayer
             {
                 SqlCommand sqlCommand = new SqlCommand();
                 sqlCommand.Connection = sqlConnection;
-                sqlCommand.CommandText = string.Format("INSERT INTO Review VALUES ('{0}',{1},{2},{3})", r.Comment, r.Grade, r.ReviewerId, r.PictureId);
+                sqlCommand.CommandText = string.Format("INSERT INTO Review VALUES ('{0}','{1}','{2}','{3}')", r.Comment, r.Grade, r.ReviewerId, r.PictureId);
+
+                sqlConnection.Open();
 
                 return sqlCommand.ExecuteNonQuery();
             }
@@ -59,6 +60,8 @@ namespace DataLayer
                 sqlCommand.CommandText = string.Format("UPDATE Review SET Comment = '{0}', Grade = {1}, ReviewerId = {2}, PictureId = {3} WHERE Id = '{4}'",
                  r.Comment, r.Grade, r.ReviewerId, r.PictureId, r.Id);
 
+                sqlConnection.Open();
+
                 return sqlCommand.ExecuteNonQuery();
             }
         }
@@ -69,6 +72,8 @@ namespace DataLayer
                 SqlCommand sqlCommand = new SqlCommand();
                 sqlCommand.Connection = sqlConnection;
                 sqlCommand.CommandText = string.Format("DELETE FROM Review WHERE Id = '{0}'", r.Id);
+
+                sqlConnection.Open();
 
                 return sqlCommand.ExecuteNonQuery();
             }
