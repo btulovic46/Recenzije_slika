@@ -33,7 +33,7 @@ namespace DataLayer
                     g.Adress = sqlDataReader.GetString(2);
                     g.City = sqlDataReader.GetString(3);
                     g.Email = sqlDataReader.GetString(4);
-
+                    g.Password = sqlDataReader.GetString(5);
                     results.Add(g);
                 }
             }
@@ -45,7 +45,9 @@ namespace DataLayer
             {
                 SqlCommand sqlCommand = new SqlCommand();
                 sqlCommand.Connection = sqlConnection;
-                sqlCommand.CommandText = string.Format("INSERT INTO Gallery VALUES ('{0}','{1}','{2}','{3},'{4}')", g.Name, g.Adress, g.City, g.Email,g.Password);
+                sqlCommand.CommandText = string.Format("INSERT INTO Gallery VALUES ('{0}','{1}','{2}','{3}','{4}')", g.Name, g.Adress, g.City, g.Email,g.Password);
+
+                sqlConnection.Open();
 
                 return sqlCommand.ExecuteNonQuery();
             }
@@ -59,6 +61,8 @@ namespace DataLayer
                 sqlCommand.CommandText = string.Format("UPDATE Gallery SET Name = '{0}', Adress = '{1}', City = '{2}', Email = '{3}' WHERE Id = '{4}'",
                  g.Name, g.Adress, g.City, g.Email, g.Id);
 
+                sqlConnection.Open();
+
                 return sqlCommand.ExecuteNonQuery();
             }
         }
@@ -69,6 +73,8 @@ namespace DataLayer
                 SqlCommand sqlCommand = new SqlCommand();
                 sqlCommand.Connection = sqlConnection;
                 sqlCommand.CommandText = string.Format("DELETE FROM Gallery WHERE Id = '{0}'", g.Id);
+
+                sqlConnection.Open();
 
                 return sqlCommand.ExecuteNonQuery();
             }

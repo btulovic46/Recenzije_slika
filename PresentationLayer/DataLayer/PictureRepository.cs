@@ -31,8 +31,8 @@ namespace DataLayer
                     p.Name = sqlDataReader.GetString(1);
                     p.Creator = sqlDataReader.GetString(2);
                     p.Description = sqlDataReader.GetString(3);
-                    long b = sqlDataReader.GetBytes(4, 0, p.Image, 0, Int32.MaxValue);
-                    p.AverageGrade = sqlDataReader.GetDouble(5);
+                    //long b = sqlDataReader.GetBytes(4, 0, p.Image, 0, Int32.MaxValue);
+                    p.AverageGrade = sqlDataReader.GetDecimal(5);
                     p.GalleryId = sqlDataReader.GetInt32(6);
 
 
@@ -48,6 +48,8 @@ namespace DataLayer
                 SqlCommand sqlCommand = new SqlCommand();
                 sqlCommand.Connection = sqlConnection;
                 sqlCommand.CommandText = string.Format("INSERT INTO Picture VALUES ('{0}','{1}','{2}','{3}',{4},{5})", p.Name, p.Creator, p.Description,p.Image, p.AverageGrade, p.GalleryId);
+
+                sqlConnection.Open();
 
                 return sqlCommand.ExecuteNonQuery();
             }
@@ -71,6 +73,8 @@ namespace DataLayer
                 SqlCommand sqlCommand = new SqlCommand();
                 sqlCommand.Connection = sqlConnection;
                 sqlCommand.CommandText = string.Format("DELETE FROM Picture WHERE Id = '{0}'", p.Id);
+
+                sqlConnection.Open();
 
                 return sqlCommand.ExecuteNonQuery();
             }
