@@ -21,6 +21,10 @@ namespace BuisnessLayer
             return this.reviewerRepository.GetAllReviewers();
         }
 
+        public Reviewer GetReviewerLogin(string name, string password)
+        {
+            return this.reviewerRepository.GetAllReviewers().FirstOrDefault(r => (r.Name + " " + r.LastName)==name  && r.Password == password);
+        }
         public bool InsertReviewer(Reviewer r)
         {
             if (this.reviewerRepository.InsertReviewer(r) > 0)

@@ -21,6 +21,10 @@ namespace BuisnessLayer
             return this.galleryRepository.GetAllGalleries();
         }
 
+        public Gallery GetGalleryLogin(string name, string password) 
+        {
+            return this.galleryRepository.GetAllGalleries().FirstOrDefault(g => g.Name == name && g.Password == password);
+        }
         public bool InsertGallery(Gallery g)
         {
             if (this.galleryRepository.InsertGallery(g) > 0)
